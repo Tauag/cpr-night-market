@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import UploadJsonButton from "@/components/upload-json-button";
 
@@ -8,15 +6,17 @@ export default function Home() {
     <main className="flex flex-col gap-[32px] row-start-2 max-w-xl">
       <h1 className="text-4xl font-bold">Night Market Creator</h1>
       <p>
-        Create your own Night Market experience for the Cyberpunk RED TTRPG!
-        This tool allows you to create and customize your own Cyberpunk RED
-        content.
+        Create your own Night Market experience for the{" "}
+        <b>Cyberpunk RED TTRPG</b>! This tool allows you to create, customize
+        and share your own <b>Cyberpunk RED </b> content. I have also included
+        handy filtering and sorting capabilities to help you find what you need
+        quickly.
       </p>
       <ol className="font-mono list-inside list-decimal text-sm/6 sm:text-left">
         <li className="mb-2 tracking-[-.01em]">
           Get started by uploading your Night Market JSON file. If you don't
           have one you can download a starter template{" "}
-          <Link href="/night_market.json" className="underline" download>
+          <Link href="/night-market.json" className="underline" download>
             here
           </Link>
           .

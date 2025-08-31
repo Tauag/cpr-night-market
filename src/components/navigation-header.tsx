@@ -1,5 +1,7 @@
+import { GitCompareIcon } from "lucide-react";
 import Link from "next/link";
 import DarkmodeToggle from "./darkmode-toggle";
+import SaveMarketButton from "./save-market-button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,12 +17,27 @@ const CUSTOMIZE_OPTIONS = [
   {
     title: "DLCs",
     href: "/customize/dlcs",
-    description: "Create your own DLCs for this Night Market!",
+    description: "Create your own DLCs for this Night Market.",
   },
   {
     title: "Weapons",
     href: "/customize/weapons",
-    description: "Customize the weapons available for this Night Market!",
+    description: "Customize your weapons room before the gig.",
+  },
+  {
+    title: "Armor",
+    href: "/customize/armor",
+    description: "Only the best armor for your Night Market!",
+  },
+  {
+    title: "Ammo",
+    href: "/customize/ammo",
+    description: "Sometimes the hollow points are just not enough.",
+  },
+  {
+    title: "Martial Arts",
+    href: "/customize/martial-arts",
+    description: "Create your own unique martial arts styles.",
   },
 ] as const;
 
@@ -51,11 +68,22 @@ export default function NavigationHeader() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="https://github.com/Tauag/cpr-night-market">Github</Link>
+            <Link
+              className="flex-row items-center gap-2"
+              href="https://github.com/Tauag/cpr-night-market"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitCompareIcon />
+              Github
+            </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenu>
-      <DarkmodeToggle />
+      <div className="flex items-center">
+        <SaveMarketButton />
+        <DarkmodeToggle />
+      </div>
     </header>
   );
 }
