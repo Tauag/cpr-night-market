@@ -11,14 +11,14 @@ import {
 
 const CUSTOMIZE_OPTIONS = [
   {
-    title: "Legend",
-    href: "/customize/legend",
-    description: "Customize the corebooks and DLCs in this Night Market!",
+    title: "DLCs",
+    href: "/customize/dlcs",
+    description: "Create your own DLCs for this Night Market!",
   },
   {
     title: "Weapons",
     href: "/customize/weapons",
-    description: "Customize the weapons for this Night Market!",
+    description: "Customize the weapons available for this Night Market!",
   },
 ] as const;
 
@@ -47,7 +47,7 @@ export default function NavigationHeader() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-         <NavigationMenuItem>
+        <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link href="https://github.com/Tauag/cpr-night-market">Github</Link>
           </NavigationMenuLink>
@@ -76,4 +76,5 @@ function ListItem({
       </NavigationMenuLink>
     </li>
   );
-}
+
+  

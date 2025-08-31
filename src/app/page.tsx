@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import UploadJsonButton from "@/components/upload-json-button";
 
 export default function Home() {
   return (
@@ -21,6 +21,10 @@ export default function Home() {
             .
           </li>
           <li className="mb-2 tracking-[-.01em]">
+            Note that if you have an existing Night Market the button will ask
+            if you want to overwrite the data.
+          </li>
+          <li className="mb-2 tracking-[-.01em]">
             You can begin customizing your Night Market by section, go to the
             Customize dropdown menu at the top of the page.
           </li>
@@ -28,7 +32,7 @@ export default function Home() {
             Enjoy creating content for your Cyberpunk RED games!
           </li>
         </ol>
-        <Button>Upload Night Market File</Button>
+        <UploadJsonButton />
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <p className="text-sm">
