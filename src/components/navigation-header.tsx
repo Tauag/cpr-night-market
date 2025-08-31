@@ -9,6 +9,8 @@ import {
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 
+export const HEADER_HEIGHT = "52px";
+
 const CUSTOMIZE_OPTIONS = [
   {
     title: "DLCs",
@@ -24,7 +26,7 @@ const CUSTOMIZE_OPTIONS = [
 
 export default function NavigationHeader() {
   return (
-    <header className="p-2 flex items-center justify-between">
+    <header className="p-2 flex items-center justify-between position-fixed w-full">
       <NavigationMenu className="list-none gap-2 flex items-center">
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
@@ -76,5 +78,4 @@ function ListItem({
       </NavigationMenuLink>
     </li>
   );
-
-  
+}
