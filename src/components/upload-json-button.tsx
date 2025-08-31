@@ -1,25 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { parseAndValidateNightMarket } from "@/validator/night-market-validator";
 import { Button } from "./ui/button";
 
 export default function UploadJsonButton() {
-  const [dataLoaded, setDataLoaded] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const json = sessionStorage.getItem("nightMarketData");
-    if (json) {
-      setDataLoaded(true);
-    }
-  }, []);
+  const router = useRouter();
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLoading(true);
     sessionStorage.removeItem("nightMarketData");
-    setDataLoaded(false);
 
     const file = event.target.files?.[0];
     if (file) {
@@ -32,19 +22,22 @@ export default function UploadJsonButton() {
           parseAndValidateNightMarket(json) !== null
         ) {
           sessionStorage.setItem("nightMarketData", json);
-          setDataLoaded(true);
-          toast.success("Night Market Data Uploaded!");
+          toast.success("Night Market Data Uploaded!", {
+            description:
+              "You will be redirected to the DLC customization page in shortly...",
+          });
+          setTimeout(() => {
+            router.push("/customization/dlcs");
+          }, 5000);
         } else {
           toast.error("Night Market Data Error", {
             description:
               "Something went wrong with your Night Market data choom. Make sure you're uploading the right file and that you only make edits to it with this tool.",
           });
         }
-        setLoading(false);
       };
       reader.onerror = () => {
         toast.error("Failed to upload Night Market Data");
-        setLoading(false);
       };
       reader.readAsText(file);
     }
@@ -54,17 +47,9 @@ export default function UploadJsonButton() {
   };
 
   return (
-    <Button
-      className="p-0"
-      variant={dataLoaded ? "destructive" : "default"}
-      disabled={loading}
-    >
+    <Button className="p-0">
       <label className="cursor-pointer w-full h-full leading-9">
-        {loading
-          ? "Uploading..."
-          : dataLoaded
-            ? "Overwrite Existing Night Market"
-            : "Upload Night Market JSON"}
+        Upload Night Market JSON File
         <input
           type="file"
           accept=".json"

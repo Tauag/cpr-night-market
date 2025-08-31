@@ -22,13 +22,16 @@ export default function Home() {
           .
         </li>
         <li className="mb-2 tracking-[-.01em]">
-          Note that if you have an existing Night Market the button will ask if
-          you want to overwrite the data.
+          Note that if this is not your first time using the Night Market
+          Creator tool you may already have data loaded!
         </li>
         <li className="mb-2 tracking-[-.01em]">
           You can begin customizing your Night Market by section, go to the
           Customize dropdown menu at the top of the page. I recommend you start
           with the DLCs section.
+        </li>
+        <li className="mb-2 tracking-[-.01em]">
+          It is a good idea to regularly save your changes.
         </li>
         <li className="mb-2tracking-[-.01em]">
           Enjoy creating content for your Cyberpunk RED games!
