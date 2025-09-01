@@ -29,23 +29,23 @@ const columns = (removeBookFn: (bookId: string) => void) =>
         );
       },
       cell: ({ row }) => (
-        <div className="text-right font-medium">{row.getValue("name")}</div>
+        <div className="text-left font-medium ml-3">{row.getValue("name")}</div>
       ),
     },
     {
       accessorKey: "abbreviation",
-      header: () => <div className="text-right">Abbreviation</div>,
+      header: () => <div className="text-left">Abbreviation</div>,
       cell: ({ row }) => (
-        <div className="text-right font-medium">
+        <div className="text-left font-medium">
           {row.getValue("abbreviation")}
         </div>
       ),
     },
     {
       accessorKey: "download_link",
-      header: () => <div className="text-right">Download Link</div>,
+      header: () => <div className="text-left">Download Link</div>,
       cell: ({ row }) => (
-        <div className="text-right font-medium">
+        <div className="text-left font-medium">
           {row.getValue("download_link")}
         </div>
       ),
@@ -62,12 +62,17 @@ const columns = (removeBookFn: (bookId: string) => void) =>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="start">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
                 onClick={() => navigator.clipboard.writeText(data.name)}
               >
                 Copy DLC Name
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(data.abbreviation)}
+              >
+                Copy DLC Abbreviation
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {

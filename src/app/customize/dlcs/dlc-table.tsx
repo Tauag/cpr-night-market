@@ -3,14 +3,12 @@
 import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import DataTable from "@/components/data-table";
-import { Button } from "@/components/ui/button";
 import type { Book, NightMarket } from "@/types/night-market";
 import DLCColumns from "./columns";
+import DialogForm from "./dialog-form";
 
 export default function DLCTable() {
   const [data, setData] = useState<Book[]>([]);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [workingBook, setWorkingBook] = useState<Book | null>(null);
 
   useEffect(() => {
     // Fetch Book data from session storage
@@ -46,10 +44,12 @@ export default function DLCTable() {
 
   return (
     <div className="flex flex-col gap-4 justify-center">
-      <Button variant="outline" className="w-fit" onClick={() => {}}>
-        <PlusIcon />
-        Add DLC
-      </Button>
+      <div className="flex gap-4">
+        <DialogForm onSubmit={addBook}>
+          <PlusIcon />
+          Add DLC
+        </DialogForm>
+      </div>
       <DataTable columns={DLCColumns(removeBook)} data={data} />
     </div>
   );
