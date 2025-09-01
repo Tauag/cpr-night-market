@@ -2,8 +2,10 @@ import { z } from "zod";
 import type { NightMarket } from "@/types/night-market";
 
 const BookSchema = z.object({
+  id: z.string(),
   name: z.string(),
   abbreviation: z.string(),
+  download_link: z.string().optional(),
 });
 
 const SourceSchema = z.object({

@@ -11,8 +11,10 @@ interface NightMarket {
 }
 
 interface Book {
+  id: string;
   name: string;
   abbreviation: string;
+  download_link?: string;
 }
 
 interface Source {
