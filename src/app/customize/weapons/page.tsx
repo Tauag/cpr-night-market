@@ -1,8 +1,12 @@
+import BaseCustomizePage from "@/components/customize/base-page";
+
 export default function CustomizeWeapons() {
   return (
-    <main className="flex flex-col gap-[32px] row-start-2 max-w-xl">
-      <h1>Weapon Customization</h1>
-      <p>Customize your Weapons for the Cyberpunk RED TTRPG!</p>
-    </main>
+    <BaseCustomizePage
+      title="Weapon Customization"
+      description="Customize your Weapons for the Cyberpunk RED TTRPG!"
+    >
+      <p>🛠️ Weapon customization coming soon! 🛠️</p>
+    </BaseCustomizePage>
   );
 }
