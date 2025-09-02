@@ -5,8 +5,10 @@ export default function NotFound() {
     <div className="flex flex-col items-center h-screen my-32">
       <h1 className="text-6xl font-bold">404</h1>
       <Image
+        className="w-auto h-auto"
         src="/images/maelstrom.webp"
         alt="Maelstrom"
+        priority
         width={500}
         height={300}
       />
