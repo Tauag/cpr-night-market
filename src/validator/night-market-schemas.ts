@@ -15,16 +15,15 @@ const BookSchema = EntitySchema.extend({
   download_link: z.string().optional(),
 });
 
-const SourceSchema = z.object({
-  book: BookSchema,
-  page: z.number().optional(),
+const ContentSchema = EntitySchema.extend({
+  book_id: z.string(),
+  page: z.coerce.number().min(1).optional(),
 });
 
-const ItemSchema = EntitySchema.extend({
+const ItemSchema = ContentSchema.extend({
   description: z.string(),
-  price: z.number(),
+  price: z.coerce.number(),
   price_category: z.enum(PriceCategories),
-  source: SourceSchema.optional(),
 });
 
 const WeaponSchema = ItemSchema.extend({
@@ -41,7 +40,7 @@ const CyberwareSchema = ItemSchema.extend({
   humanity_loss: z.number(),
 });
 
-const MartialArtsSchema = EntitySchema.extend({
+const MartialArtsSchema = ContentSchema.extend({
   description: z.string(),
 });
 
@@ -57,7 +56,6 @@ const NightMarketSchema = z.object({
 
 export {
   BookSchema,
-  SourceSchema,
   ItemSchema,
   WeaponSchema,
   ArmorSchema,

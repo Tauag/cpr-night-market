@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon } from "lucide-react";
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -25,12 +25,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Textarea } from "../ui/textarea";
 
 export interface FormInput {
   name: string;
   label: string;
   description?: string;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  select?: boolean;
+  selectProps?: React.ComponentProps<typeof Select>;
+  selectOptions?: { value: string; label: string }[];
+  selectPlaceholder?: string;
+  textarea?: boolean;
+  textAreaProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 }
 
 interface DialogFormProps {
@@ -64,6 +78,12 @@ export default function DialogForm({
     form.reset();
   };
 
+  useEffect(() => {
+    if (!open) {
+      form.reset();
+    }
+  }, [open, form.reset]);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -88,9 +108,49 @@ export default function DialogForm({
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>{input.label}</FormLabel>
-                        <FormControl>
-                          <Input {...input.inputProps} {...field} />
-                        </FormControl>
+                        <Select
+                          name={input.name}
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          {...input.selectProps}
+                        >
+                          <FormControl>
+                            <div>
+                              {input.select && (
+                                <SelectTrigger>
+                                  <SelectValue
+                                    placeholder={
+                                      input.selectPlaceholder ||
+                                      "Select an option"
+                                    }
+                                  />
+                                </SelectTrigger>
+                              )}
+                              {input.textarea && (
+                                <Textarea
+                                  className="resize-none"
+                                  {...input.textAreaProps}
+                                  {...field}
+                                />
+                              )}
+                              {!input.select && !input.textarea && (
+                                <Input {...input.inputProps} {...field} />
+                              )}
+                            </div>
+                          </FormControl>
+                          {input.selectOptions && (
+                            <SelectContent>
+                              {input.selectOptions.map((option) => (
+                                <SelectItem
+                                  key={option.value}
+                                  value={option.value}
+                                >
+                                  {option.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          )}
+                        </Select>
                         {input.description && (
                           <FormDescription>{input.description}</FormDescription>
                         )}

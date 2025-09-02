@@ -1,5 +1,7 @@
 const PriceCategories = [
   "Cheap",
+  "Everyday",
+  "Costly",
   "Premium",
   "Expensive",
   "Very Expensive",

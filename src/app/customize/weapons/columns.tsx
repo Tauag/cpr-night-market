@@ -1,0 +1,114 @@
+"use client";
+
+import type { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import type { Book, Weapon } from "@/types/night-market";
+
+const columns = (
+  remove: (id: string) => void,
+  books: Book[],
+): ColumnDef<Weapon>[] =>
+  [
+    {
+      accessorKey: "name",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Name
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        <div className="text-left font-medium ml-3">{row.getValue("name")}</div>
+      ),
+    },
+    {
+      accessorKey: "single_shot_damage",
+      header: () => <div className="text-left">Single Shot Damage</div>,
+      cell: ({ row }) => (
+        <div className="text-left font-medium">
+          {row.getValue("single_shot_damage")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "weapon_type",
+      header: () => <div className="text-left">Weapon Type</div>,
+      cell: ({ row }) => (
+        <div className="text-left font-medium">
+          {row.getValue("weapon_type")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "description",
+      header: () => <div className="text-left">Description</div>,
+      cell: ({ row }) => (
+        <div className="text-left font-medium overflow-scroll">
+          {row.getValue("description")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "price",
+      accessorFn: (row) => `${row.price} (${row.price_category})`,
+      header: () => <div className="text-left">Price</div>,
+      cell: ({ row }) => (
+        <div className="text-left font-medium">{row.getValue("price")}</div>
+      ),
+    },
+    {
+      accessorKey: "book_id",
+      accessorFn: (row) => {
+        const book = books.find((book) => book.id === row.book_id);
+        return book ? `${book.abbreviation} ${row.page || ""}` : "";
+      },
+      header: () => <div className="text-left">Source</div>,
+      cell: ({ row }) => (
+        <div className="text-left font-medium">{row.getValue("book_id")}</div>
+      ),
+    },
+    {
+      id: "actions",
+      cell: ({ row }) => {
+        const data = row.original;
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(data.name)}
+              >
+                Copy Weapon Name
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => remove(data.id)}>
+                Delete Weapon
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    },
+  ] as ColumnDef<Weapon>[];
+
+export default columns;
