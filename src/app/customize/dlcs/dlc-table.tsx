@@ -1,11 +1,12 @@
 "use client";
 
-import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import DataTable from "@/components/customize/data-table";
+import DialogForm from "@/components/customize/dialog-form";
 import type { Book, NightMarket } from "@/types/night-market";
+import { BookSchema } from "@/validator/night-market-validator";
 import DLCColumns from "./columns";
-import DialogForm from "./dialog-form";
+import { FORM_CONFIG } from "./config";
 
 export default function DLCTable() {
   const [data, setData] = useState<Book[]>([]);
@@ -31,11 +32,14 @@ export default function DLCTable() {
         );
       }
     }, 1000);
+
     return () => clearTimeout(timeout);
   }, [data]);
 
-  const addBook = (newBook: Book) => {
-    setData([...data, newBook]);
+  const addBook = (newData: Record<string, string | number>) => {
+    const newBook = newData as unknown as Book;
+    newBook.id = crypto.randomUUID();
+    setData([...data, newBook as unknown as Book]);
   };
 
   const removeBook = (bookId: string) => {
@@ -50,10 +54,20 @@ export default function DLCTable() {
         filterColumn="name"
         filterPlaceholder="Filter by name..."
         addDataButton={
-          <DialogForm onSubmit={addBook}>
-            <PlusIcon />
-            Add DLC
-          </DialogForm>
+          <DialogForm
+            title="New DLC"
+            description="Create your DLC here, click save when you're done."
+            triggerButtonText="Add DLC"
+            formInputs={FORM_CONFIG}
+            schema={BookSchema}
+            defaultValues={{
+              id: "",
+              name: "",
+              abbreviation: "",
+              download_link: "",
+            }}
+            onSubmit={addBook}
+          />
         }
       />
     </div>
