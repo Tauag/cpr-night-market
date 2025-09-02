@@ -10,20 +10,22 @@ interface NightMarket {
   martial_arts: MartialArts[];
 }
 
-interface Book {
+interface Entity {
   id: string;
   name: string;
+}
+
+interface Book extends Entity {
   abbreviation: string;
   download_link?: string;
 }
 
 interface Source {
-  book: Book;
+  book_id: string;
   page?: number;
 }
 
-interface Item {
-  name: string;
+interface Item extends Entity {
   description?: string;
   price: number;
   price_category: PriceCategory;
@@ -31,9 +33,8 @@ interface Item {
 }
 
 interface Weapon extends Item {
-  damage: string;
+  single_shot_damage: string;
   weapon_type: WeaponType;
-  exotic: boolean;
 }
 
 interface Armor extends Item {
@@ -45,9 +46,16 @@ interface Cyberware extends Item {
   humanity_loss: number;
 }
 
-interface MartialArts {
-  name: string;
-  description?: string;
+interface MartialArts extends Entity {
+  description: string;
 }
 
-export type { NightMarket, Book, Weapon, Armor, Cyberware };
+export type {
+  NightMarket,
+  Source,
+  Book,
+  Weapon,
+  Armor,
+  Cyberware,
+  MartialArts,
+};

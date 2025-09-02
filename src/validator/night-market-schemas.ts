@@ -1,8 +1,16 @@
 import { z } from "zod";
+import {
+  CyberwareInstallationOptions,
+  PriceCategories,
+  WeaponTypes,
+} from "@/constants/base-constants";
 
-const BookSchema = z.object({
+const EntitySchema = z.object({
   id: z.string(),
   name: z.string(),
+});
+
+const BookSchema = EntitySchema.extend({
   abbreviation: z.string(),
   download_link: z.string().optional(),
 });
@@ -12,18 +20,16 @@ const SourceSchema = z.object({
   page: z.number().optional(),
 });
 
-const ItemSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
+const ItemSchema = EntitySchema.extend({
+  description: z.string(),
   price: z.number(),
-  price_category: z.string(), // Adjust if you have an enum
+  price_category: z.enum(PriceCategories),
   source: SourceSchema.optional(),
 });
 
 const WeaponSchema = ItemSchema.extend({
-  damage: z.string(),
-  weapon_type: z.string(), // Adjust if you have an enum
-  exotic: z.boolean(),
+  single_shot_damage: z.string(),
+  weapon_type: z.enum(WeaponTypes),
 });
 
 const ArmorSchema = ItemSchema.extend({
@@ -31,13 +37,12 @@ const ArmorSchema = ItemSchema.extend({
 });
 
 const CyberwareSchema = ItemSchema.extend({
-  install: z.string(), // Adjust if you have an enum
+  install: z.enum(CyberwareInstallationOptions),
   humanity_loss: z.number(),
 });
 
-const MartialArtsSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
+const MartialArtsSchema = EntitySchema.extend({
+  description: z.string(),
 });
 
 const NightMarketSchema = z.object({

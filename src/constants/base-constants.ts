@@ -30,6 +30,6 @@ const WeaponTypes = [
   "Medium Melee Weapon",
   "Heavy Melee Weapon",
   "Very Heavy Melee Weapon",
-];
+] as const;
 
 export { PriceCategories, CyberwareInstallationOptions, WeaponTypes };
