@@ -29,19 +29,6 @@ export default function NavigationHeader() {
             <CustomizationsList />
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link
-              className="flex-row items-center gap-2"
-              href="https://github.com/Tauag/cpr-night-market"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GitCompareIcon />
-              Github
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
       </NavigationMenu>
       <div className="flex items-center">
         <SaveMarketButton />
