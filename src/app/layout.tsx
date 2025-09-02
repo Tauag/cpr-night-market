@@ -41,7 +41,7 @@ export default function RootLayout({
         >
           <NavigationHeader />
           <div
-            className="font-sans grid grid-rows-[20px_1fr_20px] items-start justify-items-center min-h-screen p-8 gap-16 sm:p-20"
+            className="font-sans grid grid-rows-[20px_1fr_20px] items-start justify-items-center min-h-screen p-8 sm:p-20"
             style={{ paddingTop: HEADER_HEIGHT }}
           >
             {children}

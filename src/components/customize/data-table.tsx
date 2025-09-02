@@ -74,9 +74,12 @@ export default function DataTable<TData, TValue>({
           {addDataButton && addDataButton}
         </div>
       )}
-      <div className="overflow-hidden rounded-md border">
+      <div
+        className="overflow-y-auto rounded-md border"
+        style={{ maxHeight: 600 }}
+      >
         <Table>
-          <TableHeader>
+          <TableHeader className="sticky top-0 bg-background z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -94,7 +97,7 @@ export default function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="overflow-y-auto">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
