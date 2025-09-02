@@ -2,7 +2,7 @@
 
 import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import DataTable from "@/components/data-table";
+import DataTable from "@/components/customize/data-table";
 import type { Book, NightMarket } from "@/types/night-market";
 import DLCColumns from "./columns";
 import DialogForm from "./dialog-form";
@@ -44,13 +44,18 @@ export default function DLCTable() {
 
   return (
     <div className="flex flex-col gap-4 justify-center">
-      <div className="flex gap-4">
-        <DialogForm onSubmit={addBook}>
-          <PlusIcon />
-          Add DLC
-        </DialogForm>
-      </div>
-      <DataTable columns={DLCColumns(removeBook)} data={data} />
+      <DataTable
+        columns={DLCColumns(removeBook)}
+        data={data}
+        filterColumn="name"
+        filterPlaceholder="Filter by name..."
+        addDataButton={
+          <DialogForm onSubmit={addBook}>
+            <PlusIcon />
+            Add DLC
+          </DialogForm>
+        }
+      />
     </div>
   );
 }

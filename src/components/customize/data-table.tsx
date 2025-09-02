@@ -11,6 +11,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
+import DialogForm from "@/app/customize/dlcs/dialog-form";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -26,6 +27,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   filterPlaceholder?: string;
   filterColumn?: string;
+  addDataButton?: React.ReactNode;
 }
 
 export default function DataTable<TData, TValue>({
@@ -33,6 +35,7 @@ export default function DataTable<TData, TValue>({
   data,
   filterColumn,
   filterPlaceholder,
+  addDataButton,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -52,18 +55,24 @@ export default function DataTable<TData, TValue>({
 
   return (
     <div>
-      {filterColumn && (
-        <div className="flex items-center py-4">
-          <Input
-            placeholder={filterPlaceholder || "Filter entries..."}
-            value={
-              (table.getColumn(filterColumn)?.getFilterValue() as string) ?? ""
-            }
-            onChange={(event) =>
-              table.getColumn(filterColumn)?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm"
-          />
+      {(filterColumn || addDataButton) && (
+        <div className="flex items-center justify-between py-4">
+          {filterColumn && (
+            <Input
+              placeholder={filterPlaceholder || "Filter entries..."}
+              value={
+                (table.getColumn(filterColumn)?.getFilterValue() as string) ??
+                ""
+              }
+              onChange={(event) =>
+                table
+                  .getColumn(filterColumn)
+                  ?.setFilterValue(event.target.value)
+              }
+              className="max-w-sm"
+            />
+          )}
+          {addDataButton && addDataButton}
         </div>
       )}
       <div className="overflow-hidden rounded-md border">
