@@ -1,5 +1,6 @@
 "use client";
 
+import { Tooltip, TooltipTrigger } from "@radix-ui/react-tooltip";
 import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import type { Book, Weapon } from "@/types/night-market";
 
 const columns = (
@@ -20,24 +22,30 @@ const columns = (
   [
     {
       accessorKey: "name",
-      header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Name
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        );
-      },
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
       cell: ({ row }) => (
         <div className="text-left font-medium ml-3">{row.getValue("name")}</div>
       ),
     },
     {
       accessorKey: "single_shot_damage",
-      header: () => <div className="text-left">Single Shot Damage</div>,
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Damage
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
       cell: ({ row }) => (
         <div className="text-left font-medium">
           {row.getValue("single_shot_damage")}
@@ -65,7 +73,15 @@ const columns = (
     {
       accessorKey: "price",
       accessorFn: (row) => `${row.price} (${row.price_category})`,
-      header: () => <div className="text-left">Price</div>,
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Price
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
       cell: ({ row }) => (
         <div className="text-left font-medium">{row.getValue("price")}</div>
       ),
@@ -74,12 +90,31 @@ const columns = (
       accessorKey: "book_id",
       accessorFn: (row) => {
         const book = books.find((book) => book.id === row.book_id);
-        return book ? `${book.abbreviation} ${row.page || ""}` : "";
+        return { book, page: row.page };
       },
       header: () => <div className="text-left">Source</div>,
-      cell: ({ row }) => (
-        <div className="text-left font-medium">{row.getValue("book_id")}</div>
-      ),
+      cell: ({ row }) => {
+        const { book, page } = row.getValue("book_id") as {
+          book: Book | undefined;
+          page: number | undefined;
+        };
+        return (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="text-left font-medium">
+                  {book ? `${book.abbreviation} ${page || ""}` : ""}
+                </div>
+              </TooltipTrigger>
+              {book && (
+                <TooltipContent>
+                  <p className="font-bold text-base">{book.name}</p>
+                </TooltipContent>
+              )}
+            </Tooltip>
+          </TooltipProvider>
+        );
+      },
     },
     {
       id: "actions",

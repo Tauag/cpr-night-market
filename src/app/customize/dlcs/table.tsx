@@ -8,7 +8,7 @@ import { BookSchema } from "@/validator/night-market-schemas";
 import DLCColumns from "./columns";
 import { FORM_CONFIG } from "./config";
 
-export default function DLCTable() {
+export default function Table() {
   const [data, setData] = useBookData();
 
   const addBook = (newData: Record<string, string | number>) => {

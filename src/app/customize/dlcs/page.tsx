@@ -1,5 +1,5 @@
 import BaseCustomizePage from "@/components/customize/base-page";
-import DLCTable from "./dlc-table";
+import Table from "./table";
 
 export default function CustomizeDLCs() {
   return (
@@ -8,7 +8,7 @@ export default function CustomizeDLCs() {
       description="Create DLCs or Expansions to categorize the new items and content you
         create!"
     >
-      <DLCTable />
+      <Table />
     </BaseCustomizePage>
   );
 }

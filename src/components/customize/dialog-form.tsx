@@ -25,6 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import {
   Select,
   SelectContent,
@@ -37,6 +38,7 @@ import { Textarea } from "../ui/textarea";
 export interface FormInput {
   name: string;
   label: string;
+  className?: string;
   description?: string;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   select?: boolean;
@@ -99,9 +101,12 @@ export default function DialogForm({
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(submitFn)}>
-            <div className="grid gap-4">
+            <div className="grid gap-4 grid-cols-2">
               {formInputs.map((input) => (
-                <div key={input.name} className="grid gap-3">
+                <div
+                  key={input.name}
+                  className={cn("col-span-2", input.className)}
+                >
                   <FormField
                     control={form.control}
                     name={input.name}
@@ -117,7 +122,7 @@ export default function DialogForm({
                           <FormControl>
                             <div>
                               {input.select && (
-                                <SelectTrigger>
+                                <SelectTrigger className="w-full">
                                   <SelectValue
                                     placeholder={
                                       input.selectPlaceholder ||

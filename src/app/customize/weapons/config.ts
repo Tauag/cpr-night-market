@@ -12,18 +12,9 @@ const FORM_CONFIG: FormInput[] = [
     },
   },
   {
-    name: "single_shot_damage",
-    label: "Single Shot Damage",
-    description:
-      "This is the damage dealt by a single shot from this weapon (Example: 2d6).",
-    inputProps: {
-      autoComplete: "off",
-      required: true,
-    },
-  },
-  {
     name: "weapon_type",
     label: "Weapon Type",
+    className: "md:col-span-1",
     selectProps: {
       required: true,
     },
@@ -33,6 +24,16 @@ const FORM_CONFIG: FormInput[] = [
       label: type,
     })),
     selectPlaceholder: "Select a weapon type",
+  },
+  {
+    name: "single_shot_damage",
+    label: "Single Shot Damage",
+    className: "md:col-span-1",
+    description: "Example: 2d6",
+    inputProps: {
+      autoComplete: "off",
+      required: true,
+    },
   },
   {
     name: "description",
@@ -46,6 +47,7 @@ const FORM_CONFIG: FormInput[] = [
   {
     name: "price",
     label: "Price",
+    className: "md:col-span-1",
     inputProps: {
       autoComplete: "off",
       required: true,
@@ -55,6 +57,7 @@ const FORM_CONFIG: FormInput[] = [
   {
     name: "price_category",
     label: "Price Category",
+    className: "md:col-span-1",
     selectProps: {
       required: true,
     },
