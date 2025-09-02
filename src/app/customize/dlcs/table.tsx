@@ -21,10 +21,14 @@ export default function Table() {
     setData(data.filter((book) => book.id !== bookId));
   };
 
+  const editBook = (updated: Book) => {
+    setData(data.map((book) => (book.id === updated.id ? updated : book)));
+  };
+
   return (
     <div className="flex flex-col gap-4 justify-center">
       <DataTable
-        columns={DLCColumns(removeBook)}
+        columns={DLCColumns(removeBook, editBook)}
         data={data}
         filterColumn="name"
         filterPlaceholder="Filter by name..."

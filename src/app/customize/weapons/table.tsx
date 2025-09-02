@@ -23,10 +23,16 @@ export default function Table() {
     setData(data.filter((weapon) => weapon.id !== weaponId));
   };
 
+  const editWeapon = (updated: Weapon) => {
+    setData(
+      data.map((weapon) => (weapon.id === updated.id ? updated : weapon)),
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4 justify-center">
       <DataTable
-        columns={DLCColumns(removeWeapon, bookData)}
+        columns={DLCColumns(removeWeapon, bookData, editWeapon)}
         data={data}
         filterColumn="name"
         filterPlaceholder="Filter by name..."

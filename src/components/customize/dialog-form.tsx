@@ -52,11 +52,13 @@ export interface FormInput {
 interface DialogFormProps {
   title: string;
   description: string;
-  triggerButtonText: string;
+  triggerButtonText?: string;
   formInputs: FormInput[];
   schema: z.AnyZodObject;
   defaultValues: Record<string, string | number>;
   onSubmit?: (data: Record<string, string | number>) => void;
+  defaultOpen?: boolean;
+  showButton?: boolean;
 }
 
 export default function DialogForm({
@@ -67,8 +69,10 @@ export default function DialogForm({
   schema,
   defaultValues,
   onSubmit,
+  defaultOpen,
+  showButton = true,
 }: DialogFormProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(!!defaultOpen);
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues,
@@ -88,11 +92,13 @@ export default function DialogForm({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline">
-          <PlusIcon /> {triggerButtonText}
-        </Button>
-      </DialogTrigger>
+      {showButton && (
+        <DialogTrigger asChild>
+          <Button variant="outline">
+            <PlusIcon /> {triggerButtonText}
+          </Button>
+        </DialogTrigger>
+      )}
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
