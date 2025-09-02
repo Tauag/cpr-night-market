@@ -1,15 +1,26 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { parseAndValidateNightMarket } from "@/lib/manage-night-market";
 import { Button } from "./ui/button";
 
 export default function UploadJsonButton() {
   const router = useRouter();
+  const redirectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Cancel redirect if component unmounts
+    return () => {
+      if (redirectTimeoutRef.current) {
+        clearTimeout(redirectTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    sessionStorage.removeItem("nightMarketData");
+    localStorage.removeItem("nightMarketData");
 
     const file = event.target.files?.[0];
     if (file) {
@@ -21,13 +32,13 @@ export default function UploadJsonButton() {
           typeof json === "string" &&
           parseAndValidateNightMarket(json) !== null
         ) {
-          sessionStorage.setItem("nightMarketData", json);
+          localStorage.setItem("nightMarketData", json);
           toast.success("Night Market Data Uploaded!", {
             description:
               "You will be redirected to the DLC customization page in shortly...",
           });
-          setTimeout(() => {
-            router.push("/customization/dlcs");
+          redirectTimeoutRef.current = setTimeout(() => {
+            router.push("/customize/dlcs");
           }, 5000);
         } else {
           toast.error("Night Market Data Error", {
