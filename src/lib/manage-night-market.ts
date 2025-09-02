@@ -13,11 +13,11 @@ function parseAndValidateNightMarket(json: string): NightMarket | null {
 }
 
 function setNightMarketData(data: NightMarket) {
-  sessionStorage.setItem("nightMarketData", JSON.stringify(data));
+  localStorage.setItem("nightMarketData", JSON.stringify(data));
 }
 
 function getNightMarketData(): NightMarket {
-  const storedData = sessionStorage.getItem("nightMarketData");
+  const storedData = localStorage.getItem("nightMarketData");
   if (storedData) {
     const parsedData = parseAndValidateNightMarket(storedData);
     if (parsedData) {
