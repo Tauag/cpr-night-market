@@ -1,36 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import DataTable from "@/components/customize/data-table";
 import DialogForm from "@/components/customize/dialog-form";
-import type { Book, NightMarket } from "@/types/night-market";
-import { BookSchema } from "@/validator/night-market-validator";
+import { useBookData } from "@/hooks/useNightMarketData";
+import {
+  getNightMarketData,
+  setNightMarketData,
+} from "@/lib/manage-night-market";
+import type { Book } from "@/types/night-market";
+import { BookSchema } from "@/validator/night-market-schemas";
 import DLCColumns from "./columns";
 import { FORM_CONFIG } from "./config";
 
 export default function DLCTable() {
-  const [data, setData] = useState<Book[]>([]);
-
-  useEffect(() => {
-    // Fetch Book data from session storage
-    const storedData = sessionStorage.getItem("nightMarketData");
-    if (storedData) {
-      setData(JSON.parse(storedData).books);
-    }
-  }, []);
+  const [data, setData] = useBookData();
 
   useEffect(() => {
     // Update book data in session storage when data changes, debounced.
     const timeout = setTimeout(() => {
-      const storedData = sessionStorage.getItem("nightMarketData");
-      if (storedData) {
-        const nightMarketData = JSON.parse(storedData) as NightMarket;
-        nightMarketData.books = data;
-        sessionStorage.setItem(
-          "nightMarketData",
-          JSON.stringify(nightMarketData),
-        );
-      }
+      const nightMarketData = getNightMarketData();
+      nightMarketData.books = data;
+      setNightMarketData(nightMarketData);
     }, 1000);
 
     return () => clearTimeout(timeout);

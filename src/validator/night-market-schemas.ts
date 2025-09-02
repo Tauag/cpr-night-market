@@ -51,16 +51,6 @@ const NightMarketSchema = z.object({
   martial_arts: z.array(MartialArtsSchema),
 });
 
-function parseAndValidateNightMarket(json: string): NightMarket | null {
-  try {
-    const data = JSON.parse(json);
-    return NightMarketSchema.parse(data) as NightMarket;
-  } catch (error) {
-    console.error("Validation failed:", error);
-    return null;
-  }
-}
-
 export {
   BookSchema,
   SourceSchema,
@@ -70,5 +60,4 @@ export {
   CyberwareSchema,
   MartialArtsSchema,
   NightMarketSchema,
-  parseAndValidateNightMarket,
 };

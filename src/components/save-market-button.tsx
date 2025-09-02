@@ -1,12 +1,12 @@
 "use client";
 
+import { getNightMarketData } from "@/lib/manage-night-market";
 import { Button } from "./ui/button";
 
 export default function SaveMarketButton() {
   // Save button handler
   function handleSave() {
-    const data = sessionStorage.getItem("nightMarketData");
-    if (!data) return;
+    const data = JSON.stringify(getNightMarketData());
     const blob = new Blob([data], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { parseAndValidateNightMarket } from "@/validator/night-market-validator";
+import { parseAndValidateNightMarket } from "@/lib/manage-night-market";
 import { Button } from "./ui/button";
 
 export default function UploadJsonButton() {
