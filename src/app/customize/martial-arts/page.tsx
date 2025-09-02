@@ -6,7 +6,10 @@ export default function CustomizeMartialArts() {
       title="Martial Arts Customization"
       description="Customize your Martial Arts for the Cyberpunk RED TTRPG!"
     >
-      <p>🛠️ Martial Arts customization coming soon! 🛠️</p>
+      <p>
+        🛠️ You got here too early choom, this section of the Night Market is
+        still under construction! 🛠️
+      </p>
     </BaseCustomizePage>
   );
 }

@@ -6,7 +6,10 @@ export default function CustomizeArmor() {
       title="Armor Customization"
       description="Customize your Armor for the Cyberpunk RED TTRPG!"
     >
-      <p>🛠️ Armor customization coming soon! 🛠️</p>
+      <p>
+        🛠️ You got here too early choom, this section of the Night Market is
+        still under construction! 🛠️
+      </p>
     </BaseCustomizePage>
   );
 }

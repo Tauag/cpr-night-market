@@ -6,7 +6,10 @@ export default function CustomizeAmmo() {
       title="Ammo Customization"
       description="Customize your Ammo for the Cyberpunk RED TTRPG!"
     >
-      <p>🛠️ Ammo customization coming soon! 🛠️</p>
+      <p>
+        🛠️ You got here too early choom, this section of the Night Market is
+        still under construction! 🛠️
+      </p>
     </BaseCustomizePage>
   );
 }
