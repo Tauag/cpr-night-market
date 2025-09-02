@@ -11,7 +11,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import DialogForm from "@/app/customize/dlcs/dialog-form";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -56,7 +55,7 @@ export default function DataTable<TData, TValue>({
   return (
     <div>
       {(filterColumn || addDataButton) && (
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-start py-4 space-x-4">
           {filterColumn && (
             <Input
               placeholder={filterPlaceholder || "Filter entries..."}

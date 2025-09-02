@@ -1,5 +1,4 @@
 import { z } from "zod";
-import type { NightMarket } from "@/types/night-market";
 
 const BookSchema = z.object({
   id: z.string(),

@@ -1,13 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import DataTable from "@/components/customize/data-table";
 import DialogForm from "@/components/customize/dialog-form";
 import { useBookData } from "@/hooks/useNightMarketData";
-import {
-  getNightMarketData,
-  setNightMarketData,
-} from "@/lib/manage-night-market";
 import type { Book } from "@/types/night-market";
 import { BookSchema } from "@/validator/night-market-schemas";
 import DLCColumns from "./columns";
@@ -15,17 +10,6 @@ import { FORM_CONFIG } from "./config";
 
 export default function DLCTable() {
   const [data, setData] = useBookData();
-
-  useEffect(() => {
-    // Update book data in session storage when data changes, debounced.
-    const timeout = setTimeout(() => {
-      const nightMarketData = getNightMarketData();
-      nightMarketData.books = data;
-      setNightMarketData(nightMarketData);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, [data]);
 
   const addBook = (newData: Record<string, string | number>) => {
     const newBook = newData as unknown as Book;
