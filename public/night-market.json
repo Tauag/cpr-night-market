@@ -1,7 +1,125 @@
 {
-  "books": [],
+  "books": [
+    {
+      "id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+      "name": "Cyberpunk RED",
+      "abbreviation": "CP:R",
+      "download_link": "https://www.drivethrurpg.com/en/product/333585/cyberpunk-red"
+    }
+  ],
   "items": {
-    "weapons": [],
+    "weapons": [
+      {
+        "id": "83395508-1706-441a-8d31-0825794ed309",
+        "name": "Medium Pistol",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Medium Pistol fired using the Handgun skill. It has a Rate of Fire of 2, magazine size of 12, is concealable and has a 1 hand requirement.",
+        "price": 50,
+        "price_category": "Costly",
+        "single_shot_damage": "2d6",
+        "weapon_type": "Medium Pistol"
+      },
+      {
+        "id": "a382be22-dd1a-4379-a589-88ac38de4479",
+        "name": "Heavy Pistol",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Heavy Pistol fired using the Handgun skill. It has a Rate of Fire of 2, magazine size of 8, is concealable and has a 1 hand requirement.",
+        "price": 100,
+        "price_category": "Premium",
+        "single_shot_damage": "3d6",
+        "weapon_type": "Heavy Pistol"
+      },
+      {
+        "id": "a2f1feba-bbc8-4d81-94a0-473cc580fd6d",
+        "name": "Very Heavy Pistol",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Very Heavy Pistol fired using the Handgun skill. It has a Rate of Fire of 1, magazine size of 8, is not concealable and has a 1 hand requirement.",
+        "price": 100,
+        "price_category": "Premium",
+        "single_shot_damage": "4d6",
+        "weapon_type": "Very Heavy Pistol"
+      },
+      {
+        "id": "69f9e1e2-ae9f-48d7-8746-43eb943ffd28",
+        "name": "SMG",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard SMG fired using the Handgun skill. It has a Rate of Fire of 1, magazine size of 30, is concealable and has a 1 hand requirement. This weapon is also capable of Autofire(3) and Suppressive fire.",
+        "price": 100,
+        "price_category": "Premium",
+        "single_shot_damage": "2d6",
+        "weapon_type": "SMG"
+      },
+      {
+        "id": "9efaad62-b33d-4772-83fd-e95845068e7d",
+        "name": "Heavy SMG",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Heavy SMG fired using the Handgun skill. It has a Rate of Fire of 1, magazine size of 40, is not concealable and has a 1 hand requirement. This weapon is also capable of Autofire(3) and Suppressive fire.",
+        "price": 100,
+        "price_category": "Premium",
+        "single_shot_damage": "3d6",
+        "weapon_type": "Heavy SMG"
+      },
+      {
+        "id": "e6b80de5-bffd-42c0-8b04-b056db2e4db3",
+        "name": "Shotgun",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Shotgun fired using the Shoulder Arms skill. It has a Rate of Fire of 1, magazine size of 4, is not concealable and has a 2 hands requirement. In addition to Slugs, Shotguns can also fire Shotgun Shells. You can't make an Aimed Shot with a Shotgun Shell. When you fire a Shotgun Shell, you make 1 Ranged Attack. If successful every target in front of you, within 6m/yds (3 squares) takes 3d6 damage.",
+        "price": 500,
+        "price_category": "Expensive",
+        "single_shot_damage": "5d6",
+        "weapon_type": "Shotgun"
+      },
+      {
+        "id": "49b008ea-b2d6-4d23-86fa-b24a40ac4818",
+        "name": "Assault Rifle",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Assault Rifle fired using the Shoulder Arms skill. It has a Rate of Fire of 1, magazine size of 25, is not concealable and has a 2 hands requirement. This weapon is also capable of Autofire(4) and Suppressive fire.",
+        "price": 500,
+        "price_category": "Expensive",
+        "single_shot_damage": "5d6",
+        "weapon_type": "Assault Rifle"
+      },
+      {
+        "id": "687accbd-08a0-4a34-b46c-ef744af6c9f7",
+        "name": "Sniper Rifle",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Sniper Rifle fired using the Shoulder Arms skill. It has a Rate of Fire of 1, magazine size of 4, is not concealable and has a 2 hands requirement.",
+        "price": 500,
+        "price_category": "Expensive",
+        "single_shot_damage": "5d6",
+        "weapon_type": "Sniper Rifle"
+      },
+      {
+        "id": "42b40bab-51c2-4b29-a040-9830c37ada27",
+        "name": "Bows & Crossbows",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Bow or Crossbow fired using the Archery skill. It has a Rate of Fire of 1, is not concealable and has a 2 hands requirement.",
+        "price": 100,
+        "price_category": "Premium",
+        "single_shot_damage": "4d6",
+        "weapon_type": "Bow or Crossbow"
+      },
+      {
+        "id": "e61bce78-21b4-4569-926c-08134ad59817",
+        "name": "Grenade Launcher",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Grenade Launcher fired using the Heavy Weapons skill. It has a Rate of Fire of 1, magazine size of 2, is not concealable and has a 2 hands requirement. All explosives weapons deal their damage to all targets (including the terrain) in a 10m/yd by 10m/yd area (5 Square by 5 Square), the center of which is your intended target.",
+        "price": 500,
+        "price_category": "Expensive",
+        "single_shot_damage": "6d6",
+        "weapon_type": "Grenade Launcher"
+      },
+      {
+        "id": "fa89c511-173e-4168-911d-f9f805b6edb8",
+        "name": "Rocket Launcher",
+        "book_id": "ec53ce06-753f-4cbe-95f4-1a8515b735db",
+        "description": "A standard Rocket Launcher fired using the Heavy Weapons skill. It has a Rate of Fire of 1, magazine size of 1, is not concealable and has a 2 hands requirement. All explosives weapons deal their damage to all targets (including the terrain) in a 10m/yd by 10m/yd area (5 Square by 5 Square), the center of which is your intended target.",
+        "price": 500,
+        "price_category": "Expensive",
+        "single_shot_damage": "8d6",
+        "weapon_type": "Rocket Launcher"
+      }
+    ],
     "armor": [],
     "cyberware": []
   },
