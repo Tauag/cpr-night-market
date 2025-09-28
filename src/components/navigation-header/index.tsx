@@ -1,4 +1,3 @@
-import { GitCompareIcon } from "lucide-react";
 import Link from "next/link";
 import DarkmodeToggle from "../darkmode-toggle";
 import SaveMarketButton from "../save-market-button";
